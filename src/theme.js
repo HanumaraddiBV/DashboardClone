@@ -18,15 +18,15 @@ export const tokens = (mode) => ({
           900: "#141414",
         },
         primary: {
-            100: "#313232",
-            200: "#636464",
-            300: "#949597",
-            400: "#c6c7c9",
-            500: "#f7f9fb",
-            600: "#f9fafc",
-            700: "#fafbfd",
-            800: "#fcfdfd",
-            900: "#fdfefe",
+          100: "#313232",
+          200: "#636464",
+          300: "#949597",
+          400: "#c6c7c9",
+          500: "#f7f9fb",
+          600: "#f9fafc",
+          700: "#fafbfd",
+          800: "#fcfdfd",
+          900: "#fdfefe",
         },
       }
     : {
@@ -42,15 +42,15 @@ export const tokens = (mode) => ({
           900: "#e0e0e0",
         },
         primary: {
-            100: "#fdfefe",
-            200: "#fcfdfd",
-            300: "#fafbfd",
-            400: "#f9fafc",
-            500: "#f7f9fb",
-            600: "#c6c7c9",
-            700: "#949597",
-            800: "#636464",
-            900: "#313232"
+          100: "#fdfefe",
+          200: "#fcfdfd",
+          300: "#fafbfd",
+          400: "#f9fafc",
+          500: "#f7f9fb",
+          600: "#c6c7c9",
+          700: "#949597",
+          800: "#636464",
+          900: "#313232",
         },
       }),
 });
@@ -65,7 +65,7 @@ export const themeSettings = (mode) => {
         ? {
             // palette values for dark mode
             primary: {
-              main: colors.primary[500],
+              main: colors.primary[300],
             },
             neutral: {
               dark: colors.grey[700],
@@ -128,15 +128,17 @@ export const ColorModeContext = createContext({
 });
 
 export const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light");
 
   const colorMode = useMemo(
     () => ({
-      toggleColorMode: () =>
-        setMode((prev) => (prev === "light" ? "dark" : "light")),
+      toggleColorMode: () => {
+        setMode((prev) => (prev === "light" ? "dark" : "light"));
+      },
     }),
     []
   );
+  console.log("color mode", mode);
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];

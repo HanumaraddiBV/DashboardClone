@@ -16,6 +16,8 @@ import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneR
 import { useTheme } from "@emotion/react";
 import { ColorModeContext, tokens } from "../../theme";
 
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";  
 const TopBar = () => {
   const theme = useTheme();
   const colors = tokens(theme?.palette?.mode);
@@ -33,7 +35,7 @@ const TopBar = () => {
         px: 20,
 
       }}
-      backgroundColor={colors.primary[100]}
+      backgroundColor={colors.primary[500]}
     >
       {/* Left Side (Icons and Dashboard Buttons) */}
       <Box
@@ -124,9 +126,13 @@ const TopBar = () => {
             width:"136px"
           }}
         >
-          <IconButton>
-            <WbSunnyRoundedIcon />
-          </IconButton>
+          <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === "dark" ? (
+            <DarkModeOutlinedIcon />
+          ) : (
+            <LightModeOutlinedIcon />
+          )}
+        </IconButton>
           <IconButton>
             <HistoryRoundedIcon />
           </IconButton>
